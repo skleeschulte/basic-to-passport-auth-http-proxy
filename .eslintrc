@@ -1,0 +1,18 @@
+{
+  "extends": "airbnb-base",
+  "rules" : {
+    "indent": ["error", 4, {
+      "ignoreComments": true
+    }],
+    "max-len": ["error", {
+      "code": 120,
+      "ignoreUrls": true
+    }],
+    "no-param-reassign": "off",
+    "prefer-template": "off",
+    "operator-linebreak": "off",
+    "dot-notation": "off",
+    "no-multi-spaces": "off",
+    "no-underscore-dangle": "off"
+  }
+}
