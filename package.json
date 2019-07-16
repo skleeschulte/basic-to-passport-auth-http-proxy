@@ -1,0 +1,35 @@
+{
+  "name": "basic-to-passport-auth-http-proxy",
+  "version": "0.1.0",
+  "description": "HTTP proxy server that can access resources which use the Passport SSI Version 1.4 Protocol for authorization with credentials supplied by Basic HTTP authentication.",
+  "keywords": [
+    "http",
+    "proxy",
+    "Basic authentication",
+    "Passport 1.4 authentication"
+  ],
+  "license": "MIT",
+  "author": {
+    "name": "Stefan Kleeschulte",
+    "url": "https://github.com/skleeschulte"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/skleeschulte/basic-to-passport-auth-http-proxy.git"
+  },
+  "main": "lib/server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "engines": {
+    "node": ">=10.16.0"
+  },
+  "dependencies": {
+    "axios": "0.19.0",
+    "debug": "4.1.1",
+    "get-request-url": "0.1.1",
+    "http-proxy": "1.17.0",
+    "supports-color": "7.0.0",
+    "tough-cookie": "3.0.1"
+  }
+}
