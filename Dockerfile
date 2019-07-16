@@ -1,4 +1,4 @@
-FROM node:10
+FROM node:10-alpine
 MAINTAINER Stefan Kleeschulte
 WORKDIR /usr/src/app
 RUN npm install forever -g
