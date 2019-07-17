@@ -3,8 +3,9 @@
 This is an end-to-end test that runs the [litmus WebDAV test suite](https://github.com/tolsen/litmus) against
 basic-to-passport-auth-http-proxy connected to OneDrive.
 
-To run the test, OneDrive credentials must be supplied in environment variables `ONEDRIVE_CID`, `ONEDRIVE_USERNAME` and
-`ONEDRIVE_PASSWORD`.
+To run the test, OneDrive credentials must be supplied to index.js in the environment variables `ONEDRIVE_CID`,
+`ONEDRIVE_USERNAME` and `ONEDRIVE_PASSWORD`. In addition, a Docker proxy container named `passport-proxy` and configured
+for OneDrive must be running and the litmus Docker image built and tagged `litmus`. See .travis.yml file for details.
 
 **litmus deletes and then creates a folder named litmus in the root of the WebDAV resource (OneDrive).**
 
