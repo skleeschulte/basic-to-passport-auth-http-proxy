@@ -1,5 +1,7 @@
 # basic-to-passport-auth-http-proxy
 
+[![Build Status](https://travis-ci.org/skleeschulte/basic-to-passport-auth-http-proxy.svg?branch=master)](https://travis-ci.org/skleeschulte/basic-to-passport-auth-http-proxy)
+
 HTTP proxy server that can access resources which use the Passport SSI Version 1.4 Protocol for authorization with
 credentials supplied by Basic HTTP authentication.
 
