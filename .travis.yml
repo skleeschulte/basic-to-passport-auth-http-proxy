@@ -7,7 +7,6 @@ services:
 
 before_install:
   - docker build -t passport-proxy .
-  - docker run --name passport-proxy -d -e PROXY_TARGET=https://d.docs.live.net/ passport-proxy
   - mkdir litmus_setup
   - cd litmus_setup
   - wget -O litmus.zip https://github.com/tolsen/litmus/archive/4d04ea01cd16574b8046d547aa5b773715372994.zip
@@ -15,3 +14,6 @@ before_install:
   - docker build -t litmus litmus-4d04ea01cd16574b8046d547aa5b773715372994/
   - cd ..
   - rm -rf litmus_setup
+
+install:
+  - docker run --name passport-proxy -d -e PROXY_TARGET=https://d.docs.live.net/ passport-proxy
