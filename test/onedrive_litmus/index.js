@@ -20,7 +20,6 @@ const command = `docker run --link passport-proxy:proxy litmus http://proxy:3000
 
 function run(callback) {
     exec(command, (error, stdout, stderr) => {
-        if (error) throw error;
         callback(stdout, stderr);
     });
 }

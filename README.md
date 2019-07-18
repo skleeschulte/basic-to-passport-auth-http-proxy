@@ -91,3 +91,11 @@ following log levels:
 By default, only `proxy:error` and `proxy:info` are enabled. This can be changed with the `DEBUG` environment variable.
 To log everything from the proxy server use `DEBUG=proxy:*`, to log everything including messages from third party
 libraries that also use the debug library use `DEBUG=*`.
+
+## Tests
+
+basic-to-passport-auth-http-proxy successfully completes 16 out of 18 tests of the litmus WebDAV test suite when
+proxying to OneDrive. Two tests fail because the OneDrive WebDAV API does not comply with the specifications litmus
+tests (see [test/onedrive_litmus/README.md](test/onedrive_litmus/README.md) for details).
+
+In addition the proxy server is tested with local mock Passport servers.
