@@ -5,7 +5,8 @@ node_js:
 services:
   - docker
 
-before_install:
+install:
+  - npm ci
   - docker build -t passport-proxy .
   - mkdir litmus_setup
   - cd litmus_setup
@@ -15,5 +16,5 @@ before_install:
   - cd ..
   - rm -rf litmus_setup
 
-install:
+before_script:
   - docker run --name passport-proxy -d -e PROXY_TARGET=https://d.docs.live.net/ passport-proxy
