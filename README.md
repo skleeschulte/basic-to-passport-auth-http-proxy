@@ -69,6 +69,10 @@ Configure your client with the CID number appended to the proxy host, e.g.:
 `http://localhost:3000/CID_NUMBER`  
 Depending on the client you might have to omit the `http://` part or append a trailing slash.
 
+### Further instructions 
+
+- [Backup to Microsoft OneDrive with Synology’s Hyper Backup](https://rays-blog.de/2019/07/17/310/backup-to-microsoft-onedrive-with-synologys-hyper-backup/)
+
 ## Security
 
 Currently, the proxy only supports HTTP connections on the incoming side. In consequence, user credentials will be
