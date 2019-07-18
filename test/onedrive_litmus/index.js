@@ -34,7 +34,7 @@ if (process.argv[2] === '--write-fixtures') {
     });
 } else {
     describe('run litmus WebDAV test suite against the passport proxy with OneDrive as target', () => {
-        it('should produce the expected results', (done) => {
+        it('should produce the expected results', function (done) {
             this.timeout(60 * 1000); // 60 seconds
 
             run((stdout, stderr) => {
