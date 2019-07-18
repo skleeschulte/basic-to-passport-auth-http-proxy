@@ -1,13 +1,11 @@
 const { exec } = require('child_process');
 const path = require('path');
 const fs = require('fs');
-const assert = require('assert');
+const { assert } = require('chai');
 
 const fixturesDir = path.resolve(__dirname, 'fixtures');
 const stdoutFixturePath = path.join(fixturesDir, 'stdout');
 const stderrFixturePath = path.join(fixturesDir, 'stderr');
-
-console.log('SPECIAL_CHAR_TEST', process.env.SPECIAL_CHAR_TEST);
 
 const cid = process.env.ONEDRIVE_CID;
 const username = process.env.ONEDRIVE_USERNAME;
@@ -20,19 +18,34 @@ if (!cid || !username || !password) {
 
 const command = `docker run --link passport-proxy:proxy litmus http://proxy:3000/${cid}/ ${username} ${password}`;
 
-exec(command, (error, stdout, stderr) => {
-    if (process.argv[2] === '--write-fixtures') {
+function run(callback) {
+    exec(command, (error, stdout, stderr) => {
+        if (error) throw error;
+        callback(stdout, stderr);
+    });
+}
+
+if (process.argv[2] === '--write-fixtures') {
+    run((stdout, stderr) => {
         fs.writeFileSync(stdoutFixturePath, stdout);
         fs.writeFileSync(stderrFixturePath, stderr);
 
         console.log('Fixtures written.');
-    } else {
-        const stdoutFixture = fs.readFileSync(stdoutFixturePath, 'utf8');
-        const stderrFixture = fs.readFileSync(stderrFixturePath, 'utf8');
+    });
+} else {
+    describe('run litmus WebDAV test suite against the passport proxy with OneDrive as target', () => {
+        it('should produce the expected results', (done) => {
+            this.timeout(60 * 1000); // 60 seconds
 
-        assert.strictEqual(stdout, stdoutFixture);
-        assert.strictEqual(stderr, stderrFixture);
+            run((stdout, stderr) => {
+                const stdoutFixture = fs.readFileSync(stdoutFixturePath, 'utf8');
+                const stderrFixture = fs.readFileSync(stderrFixturePath, 'utf8');
 
-        console.log('OneDrive litmus test passed.');
-    }
-});
+                assert.strictEqual(stdout, stdoutFixture);
+                assert.strictEqual(stderr, stderrFixture);
+
+                done();
+            });
+        });
+    });
+}
