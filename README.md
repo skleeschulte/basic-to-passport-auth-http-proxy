@@ -61,9 +61,13 @@ choose HTTP Basic auth. You should be prompted for username and password.
 ### Accessing OneDrive
 
 For OneDrive WebDAV access, the proxy server has to be configured with `PROXY_TARGET=https://d.docs.live.net/` as
-mentioned above. In addition to your OneDrive username (= email address) and password, you also need your OneDrive CID
+mentioned above. In addition to the OneDrive username (= email address) and password, you also need your OneDrive CID
 number. Find it in your browser's address bar when logged in to OneDrive, in Windows' Credential Manager when using the
-Windows OneDrive client, or feed your favorite search engine with "onedrive cid". The CID number is case insensitive.
+Windows OneDrive client (here, the CID is named *User name*), or feed your favorite search engine with "onedrive cid" to
+find more detailed instructions. The CID number is case insensitive.
+
+If two-step verification is enabled for the OneDrive account, an app password needs to be generated and used instead of
+the regular password.
 
 Configure your client with the CID number appended to the proxy host, e.g.:  
 `http://localhost:3000/CID_NUMBER`  
