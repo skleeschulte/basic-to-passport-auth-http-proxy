@@ -37,6 +37,28 @@ Options are set with environment variables:
 
 Or use your favourite Docker UI for these steps.
 
+#### Through Docker-compose
+
+e.g.:
+```yml
+version: '3'
+
+services:
+    proxy:
+        build:
+            context: .
+        volumes:
+            - ./local/mnt:/app/mnt
+        devices:
+            - /dev/fuse
+
+        privileged: true
+        cap_add:
+         - SYS_ADMIN
+```
+
+and play with `docker-compose run proxy yourcommand`
+
 ### Running with Node.js
 
 Make sure you have a suitable Node.js installed (the proxy server was developed with Node.js version 10 (version
