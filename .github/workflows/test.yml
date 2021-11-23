@@ -56,4 +56,4 @@ jobs:
           ONEDRIVE_CID: ${{ secrets.ONEDRIVE_CID }}
           ONEDRIVE_USERNAME: ${{ secrets.ONEDRIVE_USERNAME }}
           ONEDRIVE_PASSWORD: ${{ secrets.ONEDRIVE_PASSWORD }}
-        run: npm test:onedrive_litmus
+        run: npm run test:onedrive_litmus
