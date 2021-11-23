@@ -1,3 +1,4 @@
+require('dotenv').config();
 const { exec } = require('child_process');
 const path = require('path');
 const fs = require('fs');
@@ -16,7 +17,7 @@ if (!cid || !username || !password) {
         + ' ONEDRIVE_PASSWORD must be set.');
 }
 
-const command = `docker run --link passport-proxy:proxy litmus http://proxy:3000/${cid}/ ${username} ${password}`;
+const command = `docker run --link passport-proxy:proxy litmus http://proxy:3000/${cid}/ '${username}' '${password}'`;
 
 function run(callback) {
     exec(command, (error, stdout, stderr) => {
