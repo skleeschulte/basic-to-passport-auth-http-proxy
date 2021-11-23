@@ -1,5 +1,5 @@
-FROM node:10-alpine
-MAINTAINER Stefan Kleeschulte
+FROM node:16-alpine
+LABEL org.opencontainers.image.authors="Stefan Kleeschulte"
 WORKDIR /usr/src/app
 RUN npm install forever -g
 COPY package*.json ./
