@@ -1,0 +1,40 @@
+name: Run tests
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [10.x, 12.x, 14.x, 16.x]
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Install dependencies
+        run: npm ci
+      - run: docker build -t passport-proxy .
+      - run: mkdir litmus_setup
+      - run: cd litmus_setup
+      - run: wget -O litmus.zip https://github.com/tolsen/litmus/archive/4d04ea01cd16574b8046d547aa5b773715372994.zip
+      - run: unzip litmus.zip
+      - run: docker build -t litmus litmus-4d04ea01cd16574b8046d547aa5b773715372994/
+      - run: cd ..
+      - run: rm -rf litmus_setup
+      - run: docker run --name passport-proxy -d -e PROXY_TARGET=https://d.docs.live.net/ passport-proxy
+      - name: Run tests
+        env:
+          ONEDRIVE_CID: ${{ secrets.ONEDRIVE_CID }}
+          ONEDRIVE_USERNAME: ${{ secrets.ONEDRIVE_USERNAME }}
+          ONEDRIVE_PASSWORD: ${{ secrets.ONEDRIVE_PASSWORD }}
+        run: npm test
