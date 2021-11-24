@@ -7,6 +7,9 @@ on:
 
 jobs:
 
+  call-test-workflow:
+    uses: skleeschulte/basic-to-passport-auth-http-proxy/.github/workflows/test.yml@main
+
   build:
 
     runs-on: ubuntu-latest
