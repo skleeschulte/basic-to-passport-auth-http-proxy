@@ -1,0 +1,10 @@
+.idea/
+.devcontainer/
+.github/
+test/
+.dockerignore
+.env
+.eslintrc
+.gitignore
+.npmignore
+Dockerfile
