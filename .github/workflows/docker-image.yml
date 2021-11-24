@@ -1,0 +1,29 @@
+name: Docker Image CI
+
+on:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+
+  call-test-workflow:
+    uses: skleeschulte/basic-to-passport-auth-http-proxy/.github/workflows/test.yml@main
+
+  build:
+
+    runs-on: ubuntu-latest
+    
+    environment: docker-publish
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Docker Hub login
+      env:
+        DOCKER_HUB_USER: ${{secrets.DOCKER_HUB_USER}}
+        DOCKER_HUB_PASSWORD: ${{secrets.DOCKER_HUB_PASSWORD}}
+      run: docker login -u $DOCKER_HUB_USER -p $DOCKER_HUB_PASSWORD
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag ${{secrets.DOCKER_HUB_USER}}/basic-to-passport-auth-http-proxy:${{github.ref_name}}
+    - name: Publish the Docker image
+      run: docker push ${{secrets.DOCKER_HUB_USER}}/basic-to-passport-auth-http-proxy:${{github.ref_name}}
